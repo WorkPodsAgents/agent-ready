@@ -3,7 +3,7 @@
 // extension connects out to it. Paid provider calls run inside the extension with the user's keys,
 // so no credential ever crosses this link.
 
-export const EXTENSION_ID = 'pkkpkklkaaddigbdoinfaedbafmegjlp'
+export const EXTENSION_ID = 'lemechdbpooffhgeidkmefoppjjilanb'
 export const EXTENSION_ORIGIN = `chrome-extension://${EXTENSION_ID}`
 /** The port the bridge listens on; the extension tries it when the bridge is running. */
 export const BRIDGE_PORT = 47821

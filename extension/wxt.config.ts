@@ -1,10 +1,10 @@
 import { defineConfig } from 'wxt'
 
-// The public half of the signing key. It fixes the extension id (pkkpkklkaaddigbdoinfaedbafmegjlp)
+// The public half of the signing key. It fixes the extension id (lemechdbpooffhgeidkmefoppjjilanb)
 // for unpacked team builds and the store listing alike, so the native-messaging bridge and saved
 // results survive every update. The private key never enters this repo.
 const KEY =
-  'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAszKegafGxN3ufg5JipmWEN9tW+DRNsIQ0UXjt9PNa8slYkuKiOnA9ghM3Oak0Wsz0HFqx40JQENA8704jgO6lwjv622ek/nP/OPE0Sb1Zow44rzDdvAzOXEQoPUSBKIaJwlZqm7Je2m4B5K+/y5LfaFT1vNZWxF0uflnIeo9Yn0cLqvDrlVclZ8geK2vFOxZXUqHPX4Bl+7Ls8egfHcYSADwOkU5ffbFeAEUraIU4alqz0cEDje0kyTwkm0+sqn+gpJ3WzQXuXJPXMoMXA16antzy17gUbaDMYjuPyDsCQ2P84iOkgBbsCla1iFFMIcdp/MxwweW2xckiZGV4Jzk2QIDAQAB'
+  'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnUnPYVWy/3JCuUAYjcJ+OmnKICJ0S47rrHvEYfTpSJbjB7UPmGo53YlaChp7Uogh/YKyrY7LRF0UVsBSoJ8i+JwXMa6THc6vxxQzfRWv+9T5466pETkKI9uJYrQDdCIArmN7RzPbX2fYvbRabMDEQ8eVfTyDRt08WDQAb7IK//FQASAmxtOEBbwVXpOza4/svpYCM8+a2NVW8TS/3P46LjnffvM/bHZ303YQ67GwpkWRx0Y/yctNtWGFus8pDTYyGCJeZYpJ/oWVSQza2gkAFWEoHA0tl4VFP1L/duEhSTqnemZunOYCrLy5cdrvSjV5Szz2H0mcHNA6yP916Yto6wIDAQAB'
 
 /**
  * Sites the end-to-end run reads without a permission prompt, which a headless browser cannot
@@ -20,7 +20,8 @@ export default defineConfig({
     short_name: 'Agent Ready',
     description:
       'See your site the way search engines, AI answers and AI agents see it, and fix what stops them.',
-    key: KEY,
+    // Chrome Web Store rejects the key field; unpacked builds use its public key for the same id.
+    ...(process.env.WXT_STORE_UPLOAD === '1' ? {} : { key: KEY }),
     permissions: [
       'sidePanel',
       'activeTab',

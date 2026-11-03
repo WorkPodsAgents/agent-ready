@@ -3,7 +3,7 @@
   "author": "Shefali Munjal",
   "license": "Apache-2.0",
   "private": true,
-  "version": "0.1.6",
+  "version": "0.1.7",
   "type": "module",
   "scripts": {
     "dev": "wxt",
@@ -13,7 +13,8 @@
     "zip": "wxt zip",
     "typecheck": "wxt prepare && tsc -p .",
     "postinstall": "wxt prepare",
-    "test": "vitest run"
+    "test": "vitest run",
+    "zip:store": "WXT_STORE_UPLOAD=1 wxt zip"
   },
   "dependencies": {
     "@open-agent-ready/core": "*",
