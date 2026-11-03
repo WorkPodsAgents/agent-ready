@@ -2,6 +2,8 @@
 
 See your site the way search engines, AI answers and AI agents see it, and fix what stops them.
 
+<img src="store/images/1-this-page.png" alt="Agent Ready's side panel on allbirds.com: SEO 22 of 23, GEO 2 of 4 and AXO 1 of 5, above an on-page checklist grouped into sections">
+
 Agent Ready is a free, open-source Chrome extension, with a local MCP server and a set of skills
 for coding agents. It checks any page for three things:
 
@@ -14,11 +16,10 @@ It needs no account, sends nothing to us and has no telemetry. The checks come f
 [WorkPods](https://workpods.ai) runs for its clients, with the same ids, severities and wording.
 
 <p align="center">
-  <img src="docs/images/this-page.png" width="260" alt="On-page checks for allbirds.com: SEO 22 of 23, GEO 2 of 4, AXO 1 of 5, and a checklist grouped into eight sections">
-  &nbsp;
-  <img src="docs/images/prompt-panel-run.png" width="260" alt="A prompt panel run on ChatGPT, Gemini and Google AI Mode, with each answer marked Named, Cited or Absent and share of voice against four competitors">
-  &nbsp;
-  <img src="docs/images/journey.png" width="260" alt="An agent journey that found the price of the men's Tree Runner on allbirds.com, with a replay of each step">
+  <img src="store/images/2-ai-answers.png" width="49%" alt="One Perplexity answer read for Allbirds: Veja named first and On second, Allbirds absent, and the two sources the answer cited">
+  <img src="store/images/3-journey.png" width="49%" alt="An agent journey on allbirds.com that found the price of the men's Tree Runner in two steps">
+  <img src="store/images/4-keywords.png" width="49%" alt="Keyword ideas from the seeds sustainable sneakers and wool sneakers, with volume, difficulty and intent">
+  <img src="store/images/5-agents.png" width="49%" alt="The agent connection setting, connected to the local bridge that Claude, Codex and Cursor use">
 </p>
 <p align="center"><sub>Real results for allbirds.com, used as an example only. More in <a href="docs/using-the-extension.md">Using the extension</a>.</sub></p>
 
