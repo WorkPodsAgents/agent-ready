@@ -2,17 +2,20 @@
 // far more than chrome.storage.local and stores a CryptoKey as it is.
 
 /** results: the last audit, crawl and comparison. cache: paid answers. device: the vault key. */
-export type IdbStore = 'results' | 'cache' | 'device'
+export type IdbStore = 'results' | 'cache' | 'device' | 'private'
 
-const STORES: readonly IdbStore[] = ['results', 'cache', 'device']
+const STORES: readonly IdbStore[] = ['results', 'cache', 'device', 'private']
 
 let opening: Promise<IDBDatabase> | null = null
 
 function database(): Promise<IDBDatabase> {
   opening ??= new Promise((resolve, reject) => {
-    const request = indexedDB.open('open-agent-ready', 1)
+    const request = indexedDB.open('open-agent-ready', 2)
     request.onupgradeneeded = () => {
-      for (const store of STORES) request.result.createObjectStore(store)
+      for (const store of STORES) {
+        if (!request.result.objectStoreNames.contains(store))
+          request.result.createObjectStore(store)
+      }
     }
     request.onsuccess = () => resolve(request.result)
     request.onerror = () => reject(request.error ?? new Error('IndexedDB did not open'))

@@ -7,6 +7,7 @@ import { idbClear } from './idb'
 import { ledger } from './paid'
 import { readSettings, saveSettings } from './settings'
 import { isRemembered, vault } from './vault'
+import { clearLocalStore } from './stores'
 
 export async function status(): Promise<Status> {
   const [setUp, unlocked, remembered, stored, spend, settings] = await Promise.all([
@@ -86,7 +87,7 @@ export function registerStatusHandlers(): void {
     changed(async () => {
       await vault.wipe()
       await syncBridgeLink(false)
-      await Promise.all([idbClear('results'), idbClear('cache'), browser.storage.local.clear()])
+      await Promise.all([idbClear('results'), idbClear('cache'), clearLocalStore()])
     }),
   )
 }

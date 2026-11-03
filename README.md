@@ -115,6 +115,17 @@ provider responses and never call a paid API.
 Found a bug or a verdict you think is wrong? Open an issue with the page URL, what you expected
 and a screenshot of the panel. Never paste an API key into an issue.
 
+## Firefox builds
+
+Firefox desktop 140 or later is supported by the Firefox package. Build it with
+`npm run zip:firefox -w extension`. Chrome builds use a side panel and service worker; Firefox uses
+its sidebar and a background event page. Firefox stores private records in extension-origin
+IndexedDB and asks for data-consent permissions at install time. Optional cloud providers still
+require your own keys. Chrome's built-in model is unavailable in Firefox.
+
+The local MCP bridge needs the exact Firefox installation origin from Settings; see
+[Firefox bridge setup](docs/agents-and-skills.md#firefox-bridge-origin).
+
 ## Licence
 
 Apache-2.0, copyright WorkPods. Written by Shefali Munjal. The WorkPods name and logo are trademarks

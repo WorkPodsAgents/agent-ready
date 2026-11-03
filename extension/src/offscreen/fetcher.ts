@@ -1,9 +1,11 @@
 import type { Fetcher, FetchResponse } from '@open-agent-ready/core'
 import type { ApiReply } from '../shared/api'
+import { extensionFetcher } from '../background/fetcher'
 
 /** Sends each request to the service worker, which alone can read redirect hops. */
 export const relayFetcher: Fetcher = {
   async fetch(request) {
+    if (import.meta.env.FIREFOX) return extensionFetcher.fetch(request)
     const reply = (await browser.runtime.sendMessage({
       type: 'net:fetch',
       payload: request,

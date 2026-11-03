@@ -1,7 +1,7 @@
 // The saved prompt panel and the answer history, kept in chrome.storage.local on this device.
 // Only the extension's own pages and service worker read them: the storage is closed to content
 // scripts.
-import { browser } from 'wxt/browser'
+import { localStore } from '../background/stores'
 import type { Parties, ScoredAnswer } from './answers-core'
 
 export interface PromptPanel {
@@ -46,25 +46,25 @@ export function partiesOf(panel: PromptPanel): Parties {
 }
 
 export async function readPanel(): Promise<PromptPanel> {
-  const stored = (await browser.storage.local.get(PANEL_KEY))[PANEL_KEY]
+  const stored = await localStore.get(PANEL_KEY)
   return (stored as PromptPanel | undefined) ?? EMPTY_PANEL
 }
 
 export async function savePanel(panel: PromptPanel): Promise<void> {
-  await browser.storage.local.set({ [PANEL_KEY]: panel })
+  await localStore.set(PANEL_KEY, panel)
 }
 
 /** Every scored answer, newest first. */
 export async function readHistory(): Promise<ScoredAnswer[]> {
-  const stored = (await browser.storage.local.get(HISTORY_KEY))[HISTORY_KEY]
+  const stored = await localStore.get(HISTORY_KEY)
   return Array.isArray(stored) ? (stored as ScoredAnswer[]) : []
 }
 
 export async function addToHistory(answer: ScoredAnswer): Promise<void> {
   const kept = [answer, ...(await readHistory())].slice(0, HISTORY_LIMIT)
-  await browser.storage.local.set({ [HISTORY_KEY]: kept })
+  await localStore.set(HISTORY_KEY, kept)
 }
 
 export async function clearHistory(): Promise<void> {
-  await browser.storage.local.remove(HISTORY_KEY)
+  await localStore.remove(HISTORY_KEY)
 }

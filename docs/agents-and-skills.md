@@ -139,3 +139,25 @@ days by default) costs nothing.
 | "Port 47821 is in use"                       | Another agent session already runs a bridge. Only one bridge can talk to the extension at a time; close the other session or ask that one. |
 | A paid tool is refused                       | Unlock the vault in the side panel, check the provider's key, and set a monthly cap. See [Keys and spending](keys-and-spending.md).        |
 | A crawl times out in Codex                   | Raise `tool_timeout_sec` in `~/.codex/config.toml`.                                                                                        |
+
+## Firefox bridge origin
+
+Firefox assigns a different extension origin to each installation. Copy the command shown in
+**Settings → Agent connection** in the Firefox extension. Set `AGENT_READY_EXTENSION_ORIGIN` to
+that exact `moz-extension://…` origin in your MCP server's environment when configuring an agent.
+The bridge accepts only that origin; wildcard or ordinary website origins are rejected. Restart
+the bridge after changing its environment. Use the updated bridge source from this repository;
+the npm package is not yet published.
+
+For example, an MCP server entry can use the existing bridge command and arguments, plus:
+
+```json
+{
+  "env": {
+    "AGENT_READY_EXTENSION_ORIGIN": "moz-extension://YOUR-INSTALLATION-UUID"
+  }
+}
+```
+
+Replace the placeholder with the exact origin shown in Settings. A bridge process serves one
+browser origin at a time; stop the Chrome bridge before starting one for Firefox.

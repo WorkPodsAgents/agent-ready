@@ -17,7 +17,14 @@ import { registerReaderHandlers } from '../src/readers'
 
 export default defineBackground(() => {
   // The toolbar button opens the side panel, which is the whole interface.
-  void browser.sidePanel.setPanelBehavior({ openPanelOnActionClick: true })
+  if (import.meta.env.FIREFOX) {
+    // Firefox's sidebar can only open in direct response to the toolbar gesture.
+    browser.action.onClicked.addListener(() => {
+      void (browser as unknown as { sidebarAction: { open(): Promise<void> } }).sidebarAction.open()
+    })
+  } else {
+    void browser.sidePanel.setPanelBehavior({ openPanelOnActionClick: true })
+  }
   void closeStorageToPages()
   watchRedirects()
   listenForRequests()

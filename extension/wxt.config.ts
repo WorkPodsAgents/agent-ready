@@ -15,19 +15,19 @@ const E2E_HOSTS = ['*://*.staging.workpods.ai/*', '*://*.example.com/*']
 export default defineConfig({
   modules: ['@wxt-dev/module-react'],
   zip: { artifactTemplate: 'agent-ready-{{version}}-{{browser}}.zip' },
-  manifest: ({ mode }) => ({
+  manifest: ({ mode, browser }) => ({
     name: 'Agent Ready by WorkPods',
     short_name: 'Agent Ready',
     description:
       'See your site the way search engines, AI answers and AI agents see it, and fix what stops them.',
     // Chrome Web Store rejects the key field; unpacked builds use its public key for the same id.
-    ...(process.env.WXT_STORE_UPLOAD === '1' ? {} : { key: KEY }),
+    ...(browser === 'firefox' || process.env.WXT_STORE_UPLOAD === '1' ? {} : { key: KEY }),
     permissions: [
-      'sidePanel',
+      ...(browser === 'firefox' ? [] : ['sidePanel' as const]),
       'activeTab',
       'storage',
       'scripting',
-      'offscreen',
+      ...(browser === 'firefox' ? [] : ['offscreen' as const]),
       'alarms',
       // The e2e build cannot answer a permission prompt, so it is given the grants up front.
       ...(mode === 'e2e' ? (['webRequest', 'tabs'] as const) : []),
@@ -39,6 +39,31 @@ export default defineConfig({
     optional_permissions: ['webRequest', 'tabs'],
     optional_host_permissions: ['<all_urls>'],
     ...(mode === 'e2e' ? { host_permissions: E2E_HOSTS } : {}),
+    ...(browser === 'firefox'
+      ? {
+          // Firefox's default CSP upgrades localhost ws to wss, which the local bridge cannot use.
+          content_security_policy: {
+            extension_pages:
+              "script-src 'self'; object-src 'none'; connect-src https: http: ws://127.0.0.1:47821",
+          },
+          browser_specific_settings: {
+            gecko_android: { strict_min_version: '142.0' },
+            gecko: {
+              id: 'agent-ready@workpods.ai',
+              strict_min_version: '140.0',
+              data_collection_permissions: {
+                required: [
+                  'authenticationInfo',
+                  'browsingActivity',
+                  'websiteContent',
+                  'websiteActivity',
+                  'searchTerms',
+                ],
+              },
+            },
+          },
+        }
+      : {}),
     action: { default_title: 'Agent Ready' },
     icons: { 64: 'icon-64.png', 512: 'icon-512.png' },
   }),

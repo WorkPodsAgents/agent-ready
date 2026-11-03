@@ -6,7 +6,7 @@ import { audit, seeAsAgent } from './page'
 
 type Ops = { [K in OffscreenOp]: (input: OffscreenOps[K]['in']) => Promise<OffscreenOps[K]['out']> }
 
-const OPS: Ops = {
+export const OPS: Ops = {
   audit: (input) => audit(input.url, input.rendered, input.brandName),
   see: (input) => seeAsAgent(input.url, input.rendered),
   crawl: (input) => crawl(input, (data) => emit('crawl:progress', data)),

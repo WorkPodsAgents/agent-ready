@@ -42,5 +42,7 @@ export async function isRemembered(): Promise<boolean> {
  * vault record is encrypted, but the spend ledger and settings are still nobody's business.
  */
 export async function closeStorageToPages(): Promise<void> {
+  // Firefox private records are in extension-origin IndexedDB, outside content-script storage.
+  if (import.meta.env.FIREFOX) return
   await browser.storage.local.setAccessLevel({ accessLevel: 'TRUSTED_CONTEXTS' })
 }

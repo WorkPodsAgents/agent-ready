@@ -317,7 +317,11 @@ function AgentCard({ status }: { readonly status: Status }) {
         label="Connect to the local bridge when it runs"
       />
       <Note>Add the bridge to your agent as an MCP server with this command:</Note>
-      <code className={styles.mono}>{MCP_COMMAND}</code>
+      <code className={styles.mono}>
+        {import.meta.env.FIREFOX
+          ? `AGENT_READY_EXTENSION_ORIGIN=${browser.runtime.getURL('/').replace(/\/$/, '')} ${MCP_COMMAND}`
+          : MCP_COMMAND}
+      </code>
       <Note>
         Agents get results only. Your keys stay in this extension, and paid calls count against your
         caps.

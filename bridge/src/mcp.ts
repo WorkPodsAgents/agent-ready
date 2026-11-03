@@ -5,7 +5,8 @@ import type { z } from 'zod'
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js'
-import { BRIDGE_PORT, EXTENSION_ORIGIN } from '@open-agent-ready/core/bridge'
+import { BRIDGE_PORT } from '@open-agent-ready/core/bridge'
+import { bridgeOrigin } from './origin'
 import type { ToolArgs, ToolName } from '@open-agent-ready/core/bridge'
 import { DEFAULT_LIMIT } from '@open-agent-ready/core/crawl'
 import {
@@ -115,7 +116,11 @@ function log(line: string): void {
 }
 
 export async function runMcp(version: string): Promise<void> {
-  const link = new ExtensionLink({ port: BRIDGE_PORT, allowedOrigin: EXTENSION_ORIGIN, log })
+  const link = new ExtensionLink({
+    port: BRIDGE_PORT,
+    allowedOrigin: bridgeOrigin(process.env.AGENT_READY_EXTENSION_ORIGIN),
+    log,
+  })
   const server = createMcpServer(link, version)
   await server.connect(new StdioServerTransport())
   log(`MCP server ready; waiting for the extension on 127.0.0.1:${BRIDGE_PORT}.`)

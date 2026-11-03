@@ -16,11 +16,23 @@ sends where, and why it asks for each permission. The code is open, so you can c
 | Your prompt panel, caps, spend and preferences  | The extension's local storage                                                            |
 
 The vault encrypts each key with AES-GCM, under a key derived from your passphrase with PBKDF2
-(600,000 iterations). Only the extension's service worker decrypts a key, and only to call that
+(600,000 iterations). Only the extension's background process decrypts a key, and only to call that
 provider. Content scripts can't read the extension's storage at all. A key never reaches a web
 page, the MCP bridge, a log or an export.
 
 **Wipe data** in Settings deletes all of it.
+
+### Firefox
+
+Firefox 140 or later uses a sidebar and a background event page. Private records, including the
+vault, settings, spend ledger and histories, are stored in extension-origin IndexedDB. Firefox
+content scripts cannot access that database. The unlock key uses session storage and is not
+persisted unless you enable **Remember on this device**.
+
+Firefox displays a data-consent prompt at installation for the data types that optional provider
+features can send: authentication information, browsing activity, website content, website activity
+and search terms. These permissions do not enable telemetry; transfers happen only when you use
+features that require them, as described below.
 
 ## What leaves your device, and when
 
@@ -49,7 +61,7 @@ The connection is off until you turn on **Agent connection** in Settings.
 
 Agent Ready asks for as little as it can up front and asks for the rest when a feature needs it.
 
-**At install:**
+**At install (Chrome):**
 
 | Permission  | Why                                                                                                  |
 | ----------- | ---------------------------------------------------------------------------------------------------- |

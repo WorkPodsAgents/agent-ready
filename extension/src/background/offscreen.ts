@@ -8,6 +8,12 @@ export async function offscreen<K extends OffscreenOp>(
   op: K,
   input: OffscreenOps[K]['in'],
 ): Promise<OffscreenOps[K]['out']> {
+  if (import.meta.env.FIREFOX) {
+    // Firefox event pages already have a DOM; they cannot create Chrome offscreen documents.
+    const { OPS } = await import('../offscreen/serve')
+    const operation = OPS[op] as (value: OffscreenOps[K]['in']) => Promise<OffscreenOps[K]['out']>
+    return operation(input)
+  }
   await ensureDocument()
   const reply = (await browser.runtime.sendMessage({ target: 'offscreen', op, input })) as ApiReply
   if (!reply.ok) throw new Error(reply.error)
