@@ -1,0 +1,45 @@
+{
+  "version": "0.1.20261001",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.2 sec.",
+  "cost": 0.02418,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "10010000-0000-0000-0000-000000000001",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.1 sec.",
+      "cost": 0.02418,
+      "result_count": 1,
+      "path": ["v3", "backlinks", "bulk_ranks", "live"],
+      "data": {},
+      "result": [
+        {
+          "total_count": 5,
+          "items_count": 5,
+          "items": [
+            {
+              "target": "bigsports.example",
+              "rank": 71
+            },
+            {
+              "target": "shoeworld.example",
+              "rank": 58
+            },
+            {
+              "target": "acmerunning.example",
+              "rank": 22
+            },
+            {
+              "target": "maps.example",
+              "rank": 90
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

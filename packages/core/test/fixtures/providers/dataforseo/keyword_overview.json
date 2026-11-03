@@ -1,0 +1,52 @@
+{
+  "version": "0.1.20261001",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.2 sec.",
+  "cost": 0.01212,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "10010000-0000-0000-0000-000000000001",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.1 sec.",
+      "cost": 0.01212,
+      "result_count": 1,
+      "path": ["v3", "dataforseo_labs", "google", "keyword_overview", "live"],
+      "data": {},
+      "result": [
+        {
+          "location_code": 2840,
+          "language_code": "en",
+          "items_count": 1,
+          "items": [
+            {
+              "keyword": "running shoe store near me",
+              "keyword_info": {
+                "search_volume": 2900,
+                "cpc": 1.2,
+                "competition": 0.4,
+                "monthly_searches": [
+                  {
+                    "year": 2026,
+                    "month": 9,
+                    "search_volume": 2900
+                  }
+                ]
+              },
+              "keyword_properties": {
+                "keyword_difficulty": 12
+              },
+              "search_intent_info": {
+                "main_intent": "transactional",
+                "foreign_intent": null
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

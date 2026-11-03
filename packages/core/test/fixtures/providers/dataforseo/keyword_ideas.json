@@ -1,0 +1,102 @@
+{
+  "version": "0.1.20261001",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.2 sec.",
+  "cost": 0.01236,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "10010000-0000-0000-0000-000000000001",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.1 sec.",
+      "cost": 0.01236,
+      "result_count": 1,
+      "path": ["v3", "dataforseo_labs", "google", "keyword_ideas", "live"],
+      "data": {},
+      "result": [
+        {
+          "se_type": "google",
+          "seed_keywords": ["trail running shoes"],
+          "location_code": 2840,
+          "language_code": "en",
+          "total_count": 1820,
+          "items_count": 3,
+          "items": [
+            {
+              "keyword": "trail running shoes",
+              "keyword_info": {
+                "search_volume": 40500,
+                "cpc": 1.2,
+                "competition": 0.4,
+                "monthly_searches": [
+                  {
+                    "year": 2026,
+                    "month": 9,
+                    "search_volume": 40500
+                  }
+                ]
+              },
+              "keyword_properties": {
+                "keyword_difficulty": 62
+              },
+              "search_intent_info": {
+                "main_intent": "commercial",
+                "foreign_intent": null
+              },
+              "se_type": "google"
+            },
+            {
+              "keyword": "best trail running shoes for beginners",
+              "keyword_info": {
+                "search_volume": 6600,
+                "cpc": 1.2,
+                "competition": 0.4,
+                "monthly_searches": [
+                  {
+                    "year": 2026,
+                    "month": 9,
+                    "search_volume": 6600
+                  }
+                ]
+              },
+              "keyword_properties": {
+                "keyword_difficulty": 24
+              },
+              "search_intent_info": {
+                "main_intent": "commercial",
+                "foreign_intent": null
+              },
+              "se_type": "google"
+            },
+            {
+              "keyword": "how to clean trail shoes",
+              "keyword_info": {
+                "search_volume": 880,
+                "cpc": 1.2,
+                "competition": 0.4,
+                "monthly_searches": [
+                  {
+                    "year": 2026,
+                    "month": 9,
+                    "search_volume": 880
+                  }
+                ]
+              },
+              "keyword_properties": {
+                "keyword_difficulty": 8
+              },
+              "search_intent_info": {
+                "main_intent": "informational",
+                "foreign_intent": null
+              },
+              "se_type": "google"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

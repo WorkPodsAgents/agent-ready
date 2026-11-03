@@ -1,0 +1,45 @@
+.sides {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--line-faint);
+  border-radius: var(--radius-m);
+  background: var(--surface-sunken);
+}
+
+.label {
+  color: var(--ink-2);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+}
+
+.words {
+  color: var(--ink-1);
+  font-size: var(--fs-title);
+  font-weight: var(--fw-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.text {
+  max-height: 180px;
+  margin: 0;
+  overflow-y: auto;
+  color: var(--ink-2);
+  font-size: var(--fs-caption);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}

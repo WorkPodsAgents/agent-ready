@@ -1,0 +1,48 @@
+.page {
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  background: var(--slab);
+  color: var(--on-dark-1);
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0;
+  color: var(--on-dark-1);
+  font-size: var(--fs-title);
+}
+
+.meta {
+  color: var(--on-dark-2);
+  font-size: var(--fs-caption);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-6);
+}
+
+.problems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.path {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+}

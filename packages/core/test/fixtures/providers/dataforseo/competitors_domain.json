@@ -1,0 +1,63 @@
+{
+  "version": "0.1.20261001",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.2 sec.",
+  "cost": 0.01224,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "10010000-0000-0000-0000-000000000001",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.1 sec.",
+      "cost": 0.01224,
+      "result_count": 1,
+      "path": ["v3", "dataforseo_labs", "google", "competitors_domain", "live"],
+      "data": {},
+      "result": [
+        {
+          "target": "acmerunning.example",
+          "location_code": 2840,
+          "language_code": "en",
+          "total_count": 340,
+          "items_count": 2,
+          "items": [
+            {
+              "se_type": "google",
+              "domain": "shoeworld.example",
+              "avg_position": 14.2,
+              "sum_position": 4260,
+              "intersections": 300,
+              "full_domain_metrics": {
+                "organic": {
+                  "pos_1": 120,
+                  "count": 15400,
+                  "etv": 88200.5
+                },
+                "paid": {
+                  "count": 12,
+                  "etv": 40.1
+                }
+              }
+            },
+            {
+              "se_type": "google",
+              "domain": "trailhub.example",
+              "avg_position": 21.7,
+              "sum_position": 3906,
+              "intersections": 180,
+              "full_domain_metrics": {
+                "organic": {
+                  "count": 4100,
+                  "etv": 9100.0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

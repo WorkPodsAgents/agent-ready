@@ -1,0 +1,55 @@
+{
+  "version": "0.1.20261001",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.2 sec.",
+  "cost": 0.0242,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "10010000-0000-0000-0000-000000000001",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.1 sec.",
+      "cost": 0.0242,
+      "result_count": 1,
+      "path": ["v3", "backlinks", "domain_intersection", "live"],
+      "data": {},
+      "result": [
+        {
+          "total_count": 95,
+          "items_count": 2,
+          "items": [
+            {
+              "domain_intersection": {
+                "1": {
+                  "target": "gearreview.example",
+                  "type": "backlinks_domain_intersection",
+                  "rank": 66,
+                  "backlinks": 4,
+                  "backlinks_spam_score": 0
+                },
+                "2": {
+                  "target": "gearreview.example",
+                  "rank": 66,
+                  "backlinks": 2
+                }
+              }
+            },
+            {
+              "domain_intersection": {
+                "1": null,
+                "2": {
+                  "target": "citymarathon.example",
+                  "rank": 40,
+                  "backlinks": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

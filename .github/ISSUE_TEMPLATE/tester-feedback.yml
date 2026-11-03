@@ -1,0 +1,29 @@
+name: Tester feedback
+description: Something wrong or confusing in a team build
+labels: [tester-feedback]
+body:
+  - type: input
+    id: build
+    attributes:
+      label: Build
+      description: The release name, for example team-v0.1.0-1a2b3c4d5
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Page URL
+      description: The page the side panel was looking at
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+      description: Add a screenshot of the side panel if you can. Never paste an API key.
+    validations:
+      required: true

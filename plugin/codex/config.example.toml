@@ -1,0 +1,9 @@
+# Add this to ~/.codex/config.toml to give Codex the Agent Ready tools, then copy the skills:
+#   cp -r plugin/skills/* ~/.codex/skills/
+# The bridge runs locally. It talks to the Chrome extension on 127.0.0.1 and needs no API key;
+# paid data (DataForSEO, Cloro) uses the keys you saved in the extension.
+[mcp_servers.agent-ready]
+command = "npx"
+args = ["-y", "@workpods/agent-ready", "mcp"]
+# A crawl of 200 pages can take several minutes.
+tool_timeout_sec = 1800

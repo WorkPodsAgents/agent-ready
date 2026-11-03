@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "result": {
+    "text": "For trail runners, Acme Running and Shoe World are popular picks. Acme's Ridge 3 has a wide toe box.",
+    "markdown": "For trail runners, **Acme Running** and **Shoe World** are popular picks. Acme's Ridge 3 has a wide toe box.",
+    "model": "gpt-5",
+    "citationPills": [
+      {
+        "url": "https://www.acmerunning.example/ridge-3",
+        "label": "Ridge 3 by Acme Running"
+      },
+      {
+        "url": "https://reviews.example/best-trail-shoes",
+        "label": "Best trail shoes"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://reviews.example/best-trail-shoes",
+        "title": "Best trail shoes"
+      },
+      {
+        "link": "https://shop.shoeworld.example/trail",
+        "title": "Trail at Shoe World"
+      }
+    ],
+    "searchQueries": ["best trail running shoes"]
+  },
+  "credits": {
+    "creditsCharged": 5
+  }
+}

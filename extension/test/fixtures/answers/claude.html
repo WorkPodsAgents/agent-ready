@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Claude</title>
+  </head>
+  <body>
+    <div class="flex-1">
+      <div data-testid="user-message">
+        <p class="whitespace-pre-wrap">Compare Acme Running and Stride Co for beginners.</p>
+      </div>
+      <div data-is-streaming="false" class="group relative">
+        <div class="font-claude-response">
+          <div class="standard-markdown">
+            <p>Both suit beginners, with different strengths.</p>
+            <h3>Stride Co</h3>
+            <p>Firm and stable. Good for runners who overpronate.</p>
+            <h3>Acme Running</h3>
+            <p>
+              Soft and light. See their
+              <a href="https://acmerunning.example/beginners">beginner guide</a>.
+            </p>
+          </div>
+        </div>
+        <div><button aria-label="Copy">Copy</button></div>
+      </div>
+    </div>
+    <fieldset>
+      <div
+        contenteditable="true"
+        class="ProseMirror"
+        aria-label="Write your prompt to Claude"
+        role="textbox"
+      >
+        <p></p>
+      </div>
+      <button aria-label="Send message">Send</button>
+    </fieldset>
+  </body>
+</html>

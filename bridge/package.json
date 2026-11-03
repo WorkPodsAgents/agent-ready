@@ -1,0 +1,34 @@
+{
+  "name": "@workpods/agent-ready",
+  "author": "Shefali Munjal",
+  "version": "0.1.0",
+  "description": "Local MCP server and CLI for the Agent Ready extension: SEO, GEO and AI agent checks.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "agent-ready": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "esbuild src/cli.ts --bundle --platform=node --format=esm --target=node22 --outfile=dist/cli.js --banner:js=\"#!/usr/bin/env node\" --external:@modelcontextprotocol/sdk --external:linkedom --external:ws --external:zod",
+    "typecheck": "tsc -p .",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "linkedom": "0.18.15",
+    "ws": "8.18.3",
+    "zod": "4.1.12"
+  },
+  "devDependencies": {
+    "@open-agent-ready/core": "*",
+    "@types/node": "22.19.1",
+    "@types/ws": "8.18.1",
+    "esbuild": "0.25.12"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

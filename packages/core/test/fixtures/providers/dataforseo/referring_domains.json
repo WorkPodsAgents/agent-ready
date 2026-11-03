@@ -1,0 +1,48 @@
+{
+  "version": "0.1.20261001",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.2 sec.",
+  "cost": 0.0236,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "10010000-0000-0000-0000-000000000001",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.1 sec.",
+      "cost": 0.0236,
+      "result_count": 1,
+      "path": ["v3", "backlinks", "referring_domains", "live"],
+      "data": {},
+      "result": [
+        {
+          "target": "acmerunning.example",
+          "total_count": 612,
+          "items_count": 2,
+          "items": [
+            {
+              "type": "backlinks_referring_domain",
+              "domain": "runnersweekly.example",
+              "rank": 61,
+              "backlinks": 12,
+              "first_seen": "2023-02-11 08:00:00 +00:00",
+              "lost_date": null,
+              "backlinks_spam_score": 0
+            },
+            {
+              "type": "backlinks_referring_domain",
+              "domain": "localclub.example",
+              "rank": 18,
+              "backlinks": 3,
+              "first_seen": null,
+              "lost_date": null,
+              "backlinks_spam_score": 4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

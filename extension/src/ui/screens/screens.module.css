@@ -1,0 +1,112 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.muted {
+  color: var(--ink-2);
+  font-size: var(--fs-caption);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  overflow-wrap: anywhere;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  font-size: var(--fs-caption);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.chipButton {
+  padding: 2px var(--space-2);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--ink-1);
+  font-size: var(--fs-caption);
+}
+
+.chipButton:hover {
+  background: var(--surface-hover);
+}
+
+.progress {
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-strong);
+  overflow: hidden;
+}
+
+.progressFill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transition: width var(--motion-base) var(--motion-ease);
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: var(--space-2);
+}
+
+.kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line-faint);
+  border-radius: var(--radius-m);
+  background: var(--surface-sunken);
+}
+
+.kpiValue {
+  color: var(--ink-1);
+  font-size: var(--fs-lead);
+  font-weight: var(--fw-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.footnote {
+  margin: 0;
+  padding: var(--space-3);
+  color: var(--ink-2);
+  font-size: var(--fs-caption);
+}
+
+.selected > td {
+  background: var(--accent-soft);
+}
+
+/* A one-line verdict that opens to its detail, such as the AI crawler list. */
+.fold > summary {
+  padding-block: var(--space-1);
+  color: var(--ink-1);
+  font-size: var(--fs-body);
+  cursor: pointer;
+}
+
+.fold[open] > summary {
+  margin-block-end: var(--space-2);
+}

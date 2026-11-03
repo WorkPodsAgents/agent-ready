@@ -1,0 +1,91 @@
+{
+  "version": "0.1.20261001",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.2 sec.",
+  "cost": 0.002,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "10010000-0000-0000-0000-000000000001",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.1 sec.",
+      "cost": 0.002,
+      "result_count": 1,
+      "path": ["v3", "serp", "google", "organic", "live", "advanced"],
+      "data": {},
+      "result": [
+        {
+          "keyword": "running shoe store near me",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2840,
+          "language_code": "en",
+          "items_count": 7,
+          "items": [
+            {
+              "type": "ai_overview",
+              "rank_group": 1,
+              "rank_absolute": 1,
+              "markdown": "Running shoe stores sell...",
+              "items": []
+            },
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 2,
+              "domain": "www.bigsports.example",
+              "title": "Big Sports | Running shoes",
+              "url": "https://www.bigsports.example/running-shoes",
+              "description": "Shop running shoes."
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 3,
+              "domain": "shoeworld.example",
+              "title": "Shoe World | Running shoes",
+              "url": "https://shoeworld.example/running-shoes",
+              "description": "Shop running shoes."
+            },
+            {
+              "type": "people_also_ask",
+              "rank_group": 1,
+              "rank_absolute": 4,
+              "items": []
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 4,
+              "domain": "acmerunning.example",
+              "title": "Acme Running | Running shoes",
+              "url": "https://acmerunning.example/running-shoes",
+              "description": "Shop running shoes."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 5,
+              "domain": "maps.example",
+              "title": "Maps | Running shoes",
+              "url": "https://maps.example/running-shoes",
+              "description": "Shop running shoes."
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 6,
+              "domain": "runnersblog.example",
+              "title": "Runners Blog | Running shoes",
+              "url": "https://runnersblog.example/running-shoes",
+              "description": "Shop running shoes."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

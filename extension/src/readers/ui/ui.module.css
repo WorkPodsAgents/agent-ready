@@ -1,0 +1,247 @@
+/* The AI answers, results page and journeys tabs, at dashboard density. Every value is a WorkPods
+   token; the shapes follow the dashboard's button, badge and data table. */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-lead);
+  font-weight: var(--fw-strong);
+  color: var(--ink-1);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-strong);
+  color: var(--ink-1);
+}
+
+.note {
+  margin: 0;
+  font-size: var(--fs-caption);
+  color: var(--ink-3);
+}
+
+.error {
+  margin: 0;
+  font-size: var(--fs-caption);
+  color: var(--status-bad-fg);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.spread {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  color: var(--ink-2);
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-s);
+}
+
+.compact {
+  width: auto;
+}
+
+.textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.input:focus-visible,
+.textarea:focus-visible,
+.select:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 var(--space-4);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-strong);
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.primary {
+  color: var(--on-accent);
+  background: var(--accent);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--accent-strong);
+}
+
+.secondary {
+  color: var(--ink-1);
+  background: var(--surface);
+  border-color: var(--line-strong);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+.ghost {
+  color: var(--accent);
+  background: transparent;
+}
+
+.ghost:hover:not(:disabled) {
+  color: var(--accent-strong);
+  background: var(--surface-hover);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-2);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+  white-space: nowrap;
+  border-radius: var(--radius-pill);
+}
+
+.good {
+  color: var(--status-good-fg);
+  background: var(--status-good-bg);
+}
+
+.info {
+  color: var(--status-info-fg);
+  background: var(--status-info-bg);
+}
+
+.warn {
+  color: var(--status-warning-fg);
+  background: var(--status-warning-bg);
+}
+
+.bad {
+  color: var(--status-bad-fg);
+  background: var(--status-bad-bg);
+}
+
+.neutral {
+  color: var(--status-neutral-fg);
+  background: var(--status-neutral-bg);
+}
+
+/* One horizontal scroller per table; min-width: 0 keeps the overflow inside the card. */
+.scroller {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  font-size: var(--fs-caption);
+  border-collapse: collapse;
+}
+
+.table th {
+  padding: var(--space-2);
+  font-weight: var(--fw-medium);
+  color: var(--ink-2);
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.table td {
+  padding: var(--space-2);
+  color: var(--ink-1);
+  vertical-align: top;
+  border-bottom: 1px solid var(--line-faint);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--line-faint);
+}
+
+/* A URL on its own line, cut short with an ellipsis so it never widens the panel. */
+.link {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--accent);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quote {
+  margin: 0;
+  padding-left: var(--space-3);
+  font-size: var(--fs-caption);
+  color: var(--ink-2);
+  border-left: 2px solid var(--line-strong);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+}

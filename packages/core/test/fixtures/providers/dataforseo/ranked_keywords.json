@@ -1,0 +1,100 @@
+{
+  "version": "0.1.20261001",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.2 sec.",
+  "cost": 0.01224,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "10010000-0000-0000-0000-000000000001",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.1 sec.",
+      "cost": 0.01224,
+      "result_count": 1,
+      "path": ["v3", "dataforseo_labs", "google", "ranked_keywords", "live"],
+      "data": {},
+      "result": [
+        {
+          "target": "acmerunning.example",
+          "location_code": 2840,
+          "language_code": "en",
+          "total_count": 912,
+          "items_count": 2,
+          "items": [
+            {
+              "keyword_data": {
+                "keyword": "acme running",
+                "keyword_info": {
+                  "search_volume": 1300,
+                  "cpc": 1.2,
+                  "competition": 0.4,
+                  "monthly_searches": [
+                    {
+                      "year": 2026,
+                      "month": 9,
+                      "search_volume": 1300
+                    }
+                  ]
+                },
+                "keyword_properties": {
+                  "keyword_difficulty": 5
+                },
+                "search_intent_info": {
+                  "main_intent": "navigational",
+                  "foreign_intent": null
+                },
+                "se_type": "google"
+              },
+              "ranked_serp_element": {
+                "serp_item": {
+                  "type": "organic",
+                  "rank_group": 1,
+                  "rank_absolute": 2,
+                  "url": "https://acmerunning.example/",
+                  "etv": 1040.0
+                }
+              }
+            },
+            {
+              "keyword_data": {
+                "keyword": "waterproof trail shoes",
+                "keyword_info": {
+                  "search_volume": 2400,
+                  "cpc": 1.2,
+                  "competition": 0.4,
+                  "monthly_searches": [
+                    {
+                      "year": 2026,
+                      "month": 9,
+                      "search_volume": 2400
+                    }
+                  ]
+                },
+                "keyword_properties": {
+                  "keyword_difficulty": 31
+                },
+                "search_intent_info": {
+                  "main_intent": "commercial",
+                  "foreign_intent": null
+                },
+                "se_type": "google"
+              },
+              "ranked_serp_element": {
+                "serp_item": {
+                  "type": "organic",
+                  "rank_group": 7,
+                  "rank_absolute": 8,
+                  "url": "https://acmerunning.example/trail/waterproof",
+                  "etv": 62.4
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

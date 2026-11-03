@@ -1,0 +1,30 @@
+{
+  "name": "@open-agent-ready/extension",
+  "author": "Shefali Munjal",
+  "license": "Apache-2.0",
+  "private": true,
+  "version": "0.1.6",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "build:e2e": "wxt build --mode e2e",
+    "e2e": "wxt build --mode e2e && node e2e/smoke.mjs --staging",
+    "zip": "wxt zip",
+    "typecheck": "wxt prepare && tsc -p .",
+    "postinstall": "wxt prepare",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@open-agent-ready/core": "*",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "@wxt-dev/module-react": "1.2.2",
+    "linkedom": "0.18.15",
+    "wxt": "0.21.5"
+  }
+}

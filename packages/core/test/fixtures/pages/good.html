@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Acme Running: trail and road shoes fitted in store</title>
+    <meta
+      name="description"
+      content="Acme Running fits trail and road shoes by gait, with free returns for 60 days."
+    />
+    <link rel="canonical" href="https://example.com/" />
+    <link rel="alternate" hreflang="en" href="https://example.com/" />
+    <link rel="alternate" hreflang="en-GB" href="https://example.com/uk/" />
+    <link rel="alternate" hreflang="zh-Hant-TW" href="https://example.com/tw/" />
+    <link rel="alternate" hreflang="x-default" href="https://example.com/" />
+    <link rel="stylesheet" href="https://example.com/site.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "name": "Acme Running",
+            "url": "https://example.com/",
+            "logo": "https://example.com/logo.png",
+            "sameAs": ["https://social.example.org/acmerunning"],
+            "contactPoint": { "@type": "ContactPoint", "telephone": "+1-555-0100" }
+          },
+          { "@type": "WebSite", "name": "Acme Running", "url": "https://example.com/" }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/shoes/trail">Trail shoes</a>
+        <a href="/shoes/road">Road shoes</a>
+        <a href="https://partner.example.org/" rel="nofollow">Our race partner</a>
+        <button type="button" aria-label="Open the menu"><svg aria-hidden="true"></svg></button>
+      </nav>
+    </header>
+    <main>
+      <h1>Running shoes fitted to the way you run</h1>
+      <img src="/img/store.jpg" alt="The Acme Running store on Main Street" />
+      <img src="/img/divider.png" alt="" />
+      <p>
+        Acme Running is a small shop for people who run on roads, trails and tracks. Every pair we
+        sell starts with a short gait check on our treadmill, so we can see how your foot lands, how
+        far it rolls inward, and how your knees track over each stride. We then bring out three or
+        four shoes that suit that pattern and let you run in each one for a few minutes. Most
+        runners leave with a shoe they had never heard of before they walked in.
+      </p>
+      <h2>Trail shoes</h2>
+      <p>
+        Our trail range covers short muddy loops, long rocky mountain days and everything between.
+        We stock shoes with deep lugs for soft ground, firmer plates for sharp stones, and wider
+        bases for runners who want more stability on uneven paths. Staff test each model on the
+        local hills before it reaches the shelf, and we write down what we learn so you can read it
+        before your fitting.
+      </p>
+      <h2>Road shoes</h2>
+      <p>
+        For the road we carry daily trainers, light racing shoes and cushioned pairs for recovery
+        runs. If you are training for your first half marathon we can help you pick one shoe for
+        long runs and one for faster sessions. Bring your old shoes along: the wear on the soles
+        tells us a lot about where you need support and where you do not.
+      </p>
+      <h2>Returns and care</h2>
+      <p>
+        You can return any pair within sixty days, even after running in it, as long as it is clean.
+        We also resole selected trail models and recycle worn shoes through a local program that
+        turns old foam into playground surfaces for schools in our town.
+      </p>
+      <form
+        toolname="book_fitting"
+        tooldescription="Book a free gait check and shoe fitting in store"
+      >
+        <label for="fit-name">Your name</label>
+        <input id="fit-name" name="name" required />
+        <label>Preferred day <input type="date" name="day" /></label>
+        <fieldset toolparamdescription="The kind of running you do most">
+          <input type="radio" name="surface" value="road" aria-label="Road" />
+          <input type="radio" name="surface" value="trail" aria-label="Trail" />
+        </fieldset>
+        <select name="store" aria-label="Store" toolparamdescription="Which store to visit">
+          <option value="main">Main Street</option>
+          <option value="harbor">Harbor Road</option>
+        </select>
+        <input type="hidden" name="source" value="home" />
+        <button type="submit">Book a fitting</button>
+      </form>
+    </main>
+    <footer>
+      <a href="/contact" title="Contact us"><img src="/img/mail.svg" alt="Contact" /></a>
+    </footer>
+  </body>
+</html>
