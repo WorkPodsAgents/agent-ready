@@ -47,7 +47,6 @@ export default defineConfig({
               "script-src 'self'; object-src 'none'; connect-src https: http: ws://127.0.0.1:47821",
           },
           browser_specific_settings: {
-            gecko_android: { strict_min_version: '142.0' },
             gecko: {
               id: 'agent-ready@workpods.ai',
               strict_min_version: '140.0',
