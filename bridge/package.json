@@ -9,12 +9,14 @@
     "agent-ready": "dist/cli.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "NOTICE"
   ],
   "scripts": {
     "build": "esbuild src/cli.ts --bundle --platform=node --format=esm --target=node22 --outfile=dist/cli.js --banner:js=\"#!/usr/bin/env node\" --external:@modelcontextprotocol/sdk --external:linkedom --external:ws --external:zod",
     "typecheck": "tsc -p .",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run --passWithNoTests",
+    "prepack": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.32.2",
@@ -30,5 +32,17 @@
   },
   "engines": {
     "node": ">=22"
+  },
+  "homepage": "https://github.com/WorkPodsAgents/agent-ready",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WorkPodsAgents/agent-ready.git",
+    "directory": "bridge"
+  },
+  "bugs": {
+    "url": "https://github.com/WorkPodsAgents/agent-ready/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -28,7 +28,7 @@ bridge when it runs**. The badge shows **Waiting for the bridge** until your age
 **Claude Code**, with the skills (recommended):
 
 ```text
-/plugin marketplace add kannumehta/workpods-open-agent-ready
+/plugin marketplace add WorkPodsAgents/agent-ready
 /plugin install agent-ready@agent-ready
 ```
 
@@ -68,16 +68,16 @@ Until `@workpods/agent-ready` is on npm, run the bridge from a clone of this rep
 later):
 
 ```bash
-git clone https://github.com/kannumehta/workpods-open-agent-ready.git
-cd workpods-open-agent-ready
+git clone https://github.com/WorkPodsAgents/agent-ready.git
+cd agent-ready
 npm install && npm run build -w bridge
 ```
 
-Then use `node /full/path/to/workpods-open-agent-ready/bridge/dist/cli.js mcp` wherever the steps
+Then use `node /full/path/to/agent-ready/bridge/dist/cli.js mcp` wherever the steps
 above say `npx -y @workpods/agent-ready mcp`. For Claude Code:
 
 ```bash
-claude mcp add agent-ready -- node /full/path/to/workpods-open-agent-ready/bridge/dist/cli.js mcp
+claude mcp add agent-ready -- node /full/path/to/agent-ready/bridge/dist/cli.js mcp
 ```
 
 ## The skills

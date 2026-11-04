@@ -3,6 +3,8 @@ import type { Server } from 'node:http'
 import type { AddressInfo } from 'node:net'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { main } from '../src/commands'
+import { nodeFetcher } from '../src/node-io'
+import packageJson from '../package.json' with { type: 'json' }
 
 const PARAGRAPH =
   'Acme Running makes trail shoes for long days in rough country. Every pair is tested on ' +
@@ -28,11 +30,14 @@ const PAGES: Readonly<Record<string, string>> = {
   ),
 }
 
+const receivedAgents: (string | undefined)[] = []
+
 let server: Server
 let origin: string
 
 beforeAll(async () => {
   server = createServer((request, response) => {
+    receivedAgents.push(request.headers['user-agent'])
     const body = PAGES[request.url ?? '']
     if (request.url === '/robots.txt') {
       response.writeHead(200, { 'content-type': 'text/plain' }).end('User-agent: *\nAllow: /\n')
@@ -53,6 +58,24 @@ async function exitCode(path: string, failOn: string): Promise<number> {
 }
 
 describe('agent-ready check in CI', () => {
+  it('identifies CLI requests with the published version and public support repository', async () => {
+    receivedAgents.length = 0
+    await exitCode('/long-title', 'high')
+    expect(receivedAgents.length).toBeGreaterThan(0)
+    expect(
+      receivedAgents.every(
+        (agent) =>
+          agent ===
+          `AgentReady/${packageJson.version} (+https://github.com/WorkPodsAgents/agent-ready)`,
+      ),
+    ).toBe(true)
+  })
+
+  it('preserves a caller-supplied crawler identity', async () => {
+    await nodeFetcher.fetch({ url: `${origin}/long-title`, userAgent: 'CustomProbe/1.0' })
+    expect(receivedAgents.at(-1)).toBe('CustomProbe/1.0')
+  })
+
   it('passes a page with only low problems at --fail-on medium, and fails it at low', async () => {
     expect(await exitCode('/long-title', 'medium')).toBe(0)
     expect(await exitCode('/long-title', 'low')).toBe(1)

@@ -58,11 +58,14 @@ changes in your repository.
 
 ## Get started
 
-> **Pre-release.** The Chrome Web Store listing and the npm package are not published yet. Until
-> they are, install a build from this repository's releases, as [TESTING.md](TESTING.md)
-> describes, and run the bridge from source ([how](docs/agents-and-skills.md#before-the-npm-release)).
+Install [Agent Ready from the Chrome Web Store](https://chromewebstore.google.com/detail/agent-ready-by-workpods/lemechdbpooffhgeidkmefoppjjilanb).
 
-1. Install the extension, open its side panel and click **Check this page**:
+The npm bridge package is not published yet. Until it is, use the
+[source-install instructions](docs/agents-and-skills.md#before-the-npm-release) for agent and CLI
+commands. [TESTING.md](TESTING.md) covers unpacked builds for development and release testing.
+
+1. [Install the extension](https://chromewebstore.google.com/detail/agent-ready-by-workpods/lemechdbpooffhgeidkmefoppjjilanb),
+   open its side panel and click **Check this page**:
    [Getting started](docs/getting-started.md).
 2. Learn what each tab does: [Using the extension](docs/using-the-extension.md).
 3. Connect your coding agent and add the skills: [Agents and skills](docs/agents-and-skills.md).

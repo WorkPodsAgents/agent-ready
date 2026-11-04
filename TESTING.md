@@ -1,11 +1,14 @@
-# Testing Agent Ready
+# Developer and release testing
 
-Before the public release, the team tests builds from GitHub. You need read access to the
-`workpodsai-agents/agent-ready` repository and Chrome on a desktop.
+For normal use, install Agent Ready from the
+[Chrome Web Store](https://chromewebstore.google.com/detail/agent-ready-by-workpods/lemechdbpooffhgeidkmefoppjjilanb).
+This guide covers unpacked builds for development, reproducing issues and testing a release.
+The [repository](https://github.com/WorkPodsAgents/agent-ready) is public; you need Chrome on a desktop.
 
 ## Install a team build
 
-1. Open the repository's Releases page and download the newest `team-v…` zip.
+1. Open the repository's Releases page and download the Chrome zip for the version you want to test
+   (`agent-ready-<version>-chrome.zip`, or a `team-v…` build when provided).
 2. Unzip it into a folder you will keep, such as `~/agent-ready-build`.
 3. In Chrome, go to `chrome://extensions` and turn on **Developer mode** (top right).
 4. Click **Load unpacked** and choose the unzipped folder.
