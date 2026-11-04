@@ -60,9 +60,9 @@ changes in your repository.
 
 Install [Agent Ready from the Chrome Web Store](https://chromewebstore.google.com/detail/agent-ready-by-workpods/lemechdbpooffhgeidkmefoppjjilanb).
 
-The npm bridge package is not published yet. Until it is, use the
-[source-install instructions](docs/agents-and-skills.md#before-the-npm-release) for agent and CLI
-commands. [TESTING.md](TESTING.md) covers unpacked builds for development and release testing.
+The [npm bridge package](https://www.npmjs.com/package/@workpods/agent-ready) provides agent and
+CLI commands. See [Agents and skills](docs/agents-and-skills.md) for setup.
+[TESTING.md](TESTING.md) covers unpacked builds for development and release testing.
 
 1. [Install the extension](https://chromewebstore.google.com/detail/agent-ready-by-workpods/lemechdbpooffhgeidkmefoppjjilanb),
    open its side panel and click **Check this page**:

@@ -4,9 +4,7 @@ The bridge package doubles as a command-line tool. It runs the checks in Node, w
 and no extension. Use it to check a page from a terminal, or to fail a build when a deploy breaks
 something a search engine or an AI crawler needs.
 
-You need Node 22 or later. Until `@workpods/agent-ready` is published on npm, build it from a clone
-and use `node bridge/dist/cli.js` in place of `npx @workpods/agent-ready`
-([how](agents-and-skills.md#before-the-npm-release)).
+You need Node 22 or later. `npx` downloads the published package when you first run it.
 
 ## Check a page
 
