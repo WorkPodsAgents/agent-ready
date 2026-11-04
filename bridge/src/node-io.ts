@@ -1,6 +1,7 @@
 // The core's IO seams for Node: the CLI and the bridge's no-browser fallback fetch with Node's
 // fetch and parse with linkedom, where the extension uses its service worker and DOMParser.
 import { parseHTML } from 'linkedom'
+import packageJson from '../package.json' with { type: 'json' }
 import type {
   FetchRequest,
   FetchResponse,
@@ -9,8 +10,7 @@ import type {
   Sleep,
 } from '@open-agent-ready/core'
 
-export const USER_AGENT =
-  'OpenAgentReady/0.1 (+https://github.com/kannumehta/workpods-open-agent-ready)'
+export const USER_AGENT = `AgentReady/${packageJson.version} (+https://github.com/WorkPodsAgents/agent-ready)`
 
 /** A slow site must not hang a CI job; a page that takes longer is reported as unreachable. */
 const REQUEST_TIMEOUT_MS = 20_000

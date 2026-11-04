@@ -26,7 +26,7 @@ agent never sees them, and every paid call stays under the monthly cap you set t
 **Claude Code**
 
 ```text
-/plugin marketplace add workpodsai-agents/agent-ready
+/plugin marketplace add WorkPodsAgents/agent-ready
 /plugin install agent-ready@agent-ready
 ```
 

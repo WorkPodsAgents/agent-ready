@@ -5,9 +5,9 @@ You need Chrome (or another Chromium browser, such as Edge or Brave) on a deskto
 
 ## 1. Install the extension
 
-**From the Chrome Web Store:** coming at launch.
+**From the Chrome Web Store:** [Install Agent Ready](https://chromewebstore.google.com/detail/agent-ready-by-workpods/lemechdbpooffhgeidkmefoppjjilanb).
 
-**From a release build (today):**
+**For developers, from a release build:**
 
 1. Download the newest `agent-ready-<version>-chrome.zip` from this repository's Releases page.
 2. Unzip it into a folder you will keep, such as `~/agent-ready`. Chrome loads the extension from
