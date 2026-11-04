@@ -62,24 +62,6 @@ tool_timeout_sec = 1800
 }
 ```
 
-### Before the npm release
-
-Until `@workpods/agent-ready` is on npm, run the bridge from a clone of this repository (Node 22 or
-later):
-
-```bash
-git clone https://github.com/WorkPodsAgents/agent-ready.git
-cd agent-ready
-npm install && npm run build -w bridge
-```
-
-Then use `node /full/path/to/agent-ready/bridge/dist/cli.js mcp` wherever the steps
-above say `npx -y @workpods/agent-ready mcp`. For Claude Code:
-
-```bash
-claude mcp add agent-ready -- node /full/path/to/agent-ready/bridge/dist/cli.js mcp
-```
-
 ## The skills
 
 Ask in plain words; the agent picks the skill. In Claude Code you can also call one by name, such
@@ -146,8 +128,7 @@ Firefox assigns a different extension origin to each installation. Copy the comm
 **Settings → Agent connection** in the Firefox extension. Set `AGENT_READY_EXTENSION_ORIGIN` to
 that exact `moz-extension://…` origin in your MCP server's environment when configuring an agent.
 The bridge accepts only that origin; wildcard or ordinary website origins are rejected. Restart
-the bridge after changing its environment. Use the updated bridge source from this repository;
-the npm package is not yet published.
+the bridge after changing its environment. Use `@workpods/agent-ready` 0.1.0 or later.
 
 For example, an MCP server entry can use the existing bridge command and arguments, plus:
 
