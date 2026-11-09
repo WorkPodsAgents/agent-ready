@@ -1,0 +1,24 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "agent-ready",
+  "version": "1.0.0",
+  "description": "SEO and AI search audits of any public web page from your agent: indexing, schema markup, AI crawler access, robots.txt, sitemaps, llms.txt, agent readiness and site crawls, plus drafted fixes. Free, no account.",
+  "author": {
+    "name": "WorkPods",
+    "email": "yours@workpods.ai",
+    "url": "https://workpods.ai"
+  },
+  "homepage": "https://workpods.ai/tools/agent-ready",
+  "repository": "https://github.com/WorkPodsAgents/agent-ready",
+  "license": "Apache-2.0",
+  "keywords": ["seo", "geo", "aeo", "ai-search", "llms-txt", "robots-txt", "schema-markup", "mcp"],
+  "extensions": {
+    "com.nousresearch.hermes": {
+      "servers": {
+        "agent-ready": {
+          "trust": "untrusted"
+        }
+      }
+    }
+  }
+}
