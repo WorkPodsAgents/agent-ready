@@ -1,6 +1,6 @@
 # How the checks work
 
-Agent Ready runs the same checks WorkPods uses in its client audits. Each has a stable id (such as
+Agent Ready runs the same checks WorkPods.ai uses in its client audits. Each has a stable id (such as
 `missing_title`, `ai_content_requires_js` or `AX2`), a layer, a group and a default severity. They
 are listed in `vendor/workpods/contracts/check-registry.json`.
 

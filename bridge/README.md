@@ -1,6 +1,6 @@
 # @workpods/agent-ready
 
-Local MCP server and CLI for the Agent Ready browser extension: check SEO, AI answer visibility
+SEO MCP server and CLI for the Agent Ready browser extension: check SEO, AI answer visibility
 (GEO), and whether AI agents can use a website (AXO).
 
 ## Install the extension
@@ -69,7 +69,7 @@ for Codex, skills, and Firefox origin configuration.
 - **Journeys:** observe a page and take steps in a scratch tab to test an agent task. Requires the
   extension. Final submissions, purchases, and sign-ins are refused.
 
-No WorkPods account is required. Provider keys stay in the extension; the MCP server returns
+No WorkPods.ai account is required. Provider keys stay in the extension; the MCP server returns
 results to the agent and does not receive those keys.
 
 ## Links
@@ -80,5 +80,5 @@ results to the agent and does not receive those keys.
 [CLI documentation](https://github.com/WorkPodsAgents/agent-ready/blob/main/docs/command-line.md) ·
 [Apache-2.0 license](https://github.com/WorkPodsAgents/agent-ready/blob/main/LICENSE)
 
-Built by [WorkPods](https://workpods.ai). Written by Shefali Munjal. See LICENSE and NOTICE for
+Built by [WorkPods.ai](https://workpods.ai/tools/agent-ready). Written by Shefali Munjal. See LICENSE and NOTICE for
 licensing and attribution.

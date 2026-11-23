@@ -4,7 +4,7 @@ The side panel has a header and seven tabs. This guide goes through them in orde
 says what the tab is for, what it costs and how to get the most from it.
 
 The screenshots show real results for allbirds.com, taken on 2 November 2026. Allbirds is only an
-example; it has no connection with Agent Ready or WorkPods.
+example; it has no connection with Agent Ready or WorkPods.ai.
 
 ## The header
 

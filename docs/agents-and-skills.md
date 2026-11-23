@@ -8,7 +8,7 @@ Agent Ready gives your coding agent the same checks as the side panel. Two piece
 - **The skills** are instructions that teach Claude Code or Codex how to run a full audit, a fix
   plan or a keyword study with those tools, and write the results to files in your project.
 
-Nothing goes through a WorkPods server. Your API keys stay in the extension; the agent gets results
+Nothing goes through a WorkPods.ai server. Your API keys stay in the extension; the agent gets results
 only, and every paid call counts against the caps you set in the panel.
 
 ## Set up
