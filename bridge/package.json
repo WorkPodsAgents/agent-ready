@@ -1,11 +1,11 @@
 {
   "name": "@workpods/agent-ready",
   "author": {
-    "name": "WorkPods",
+    "name": "WorkPods.ai",
     "url": "https://workpods.ai"
   },
   "version": "0.1.1",
-  "description": "Local MCP server and CLI for the Agent Ready extension: SEO, GEO and AI agent checks.",
+  "description": "SEO MCP server and CLI for the Agent Ready Chrome extension: SEO, GEO, llms.txt, AI crawler access and AI agent readiness checks for Claude Code, Codex, Cursor and CI.",
   "license": "Apache-2.0",
   "type": "module",
   "bin": {
@@ -52,10 +52,14 @@
     "mcp",
     "mcp-server",
     "seo",
+    "seo-audit",
+    "seo-mcp",
     "geo",
     "axo",
     "ai-agents",
     "llms-txt",
+    "robots-txt",
+    "ai-search",
     "structured-data",
     "chrome-extension",
     "cli"

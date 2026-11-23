@@ -2,8 +2,8 @@
   "name": "agent-ready",
   "version": "0.1.0",
   "description": "SEO, GEO and AI agent audits for your own site, run by your coding agent through the Agent Ready extension and local MCP bridge. No account; paid data uses your own keys.",
-  "author": { "name": "Shefali Munjal" },
-  "homepage": "https://github.com/WorkPodsAgents/agent-ready",
+  "author": { "name": "WorkPods.ai", "url": "https://workpods.ai" },
+  "homepage": "https://workpods.ai/tools/agent-ready",
   "repository": "https://github.com/WorkPodsAgents/agent-ready",
   "license": "Apache-2.0",
   "keywords": ["seo", "geo", "axo", "ai-visibility", "llms-txt", "mcp", "agents"]
