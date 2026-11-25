@@ -35,8 +35,7 @@ agent never sees them, and every paid call stays under the monthly cap you set t
 
 Then install the Chrome extension, turn on Agent connection in its settings, and keep Chrome
 open while the agent works. [Agents and skills](../docs/agents-and-skills.md) covers Cursor,
-Claude Desktop, running the bridge from source before the npm release, every tool and
-troubleshooting. Without it, the page, site file and crawl checks still run in Node,
+Claude Desktop, every tool and troubleshooting. Without it, the page, site file and crawl checks still run in Node,
 and the skills say which checks were not applicable.
 
 ## Develop

@@ -1,11 +1,8 @@
 {
   "name": "@workpods/agent-ready",
-  "author": {
-    "name": "WorkPods.ai",
-    "url": "https://workpods.ai"
-  },
-  "version": "0.1.1",
-  "description": "SEO MCP server and CLI for the Agent Ready Chrome extension: SEO, GEO, llms.txt, AI crawler access and AI agent readiness checks for Claude Code, Codex, Cursor and CI.",
+  "author": "WorkPods.ai <yours@workpods.ai> (https://workpods.ai)",
+  "version": "0.1.2",
+  "description": "Free, open-source checker for how well AI search and AI agents can read and use a website. MCP server and CLI. Made by WorkPods.ai, an AI SEO agency.",
   "license": "Apache-2.0",
   "type": "module",
   "bin": {

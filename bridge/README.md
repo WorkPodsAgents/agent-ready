@@ -74,7 +74,7 @@ results to the agent and does not receive those keys.
 
 ## Links
 
-[Agent Ready by WorkPods](https://workpods.ai/tools/agent-ready) ·
+[Agent Ready by WorkPods.ai](https://workpods.ai/tools/agent-ready) ·
 [Source code](https://github.com/WorkPodsAgents/agent-ready) ·
 [Privacy and permissions](https://github.com/WorkPodsAgents/agent-ready/blob/main/docs/privacy-and-permissions.md) ·
 [CLI documentation](https://github.com/WorkPodsAgents/agent-ready/blob/main/docs/command-line.md) ·
