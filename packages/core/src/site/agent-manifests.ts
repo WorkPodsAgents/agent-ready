@@ -1,22 +1,33 @@
 // Checks the JSON manifests agents read against exactly what their pinned standards require,
 // ported from WorkPods AgentManifests.kt, so a finding names the field to fix. Optional fields are
-// never required. Sources, as pinned there:
-// - AI catalog: Agent-Card/ai-catalog specification/ai-catalog.md at 9aac2c1 (specVersion
-//   "Major.Minor", entries; an entry's identifier and type, and exactly one of url or data).
-// - MCP server card (SEP-2127): modelcontextprotocol/ext-server-card schema.ts at 526201b.
+// never required. Sources:
+// - AI catalog: Agent-Card/ai-catalog specification/ai-catalog.md at 08692c4, the v0.9 release
+//   candidate (specVersion "Major.Minor", entries; an entry's identifier and type, and exactly one
+//   of url or data; a host, when present, names its displayName). An entry's displayName is
+//   optional there (ADR-0016) but required by ARD v0.91 (ards-project/ard-spec
+//   spec/schemas/ard-entry.schema.json), so its absence is kept apart as an ARD gap that never
+//   decides the catalog's verdict.
+// - MCP server card (SEP-2127): modelcontextprotocol/ext-server-card schema.ts at 28db12c, whose
+//   rules checked here are unchanged since 526201b.
 // - A2A agent card: A2A 1.0.0 a2a.proto, where a required array holds at least one element. A
 //   0.x card names its endpoint as url, accepted only on the legacy /.well-known/agent.json path.
 import type { FileProblem } from './file-problem'
 
-type Json = Readonly<Record<string, unknown>>
+export type Json = Readonly<Record<string, unknown>>
 
 /** A catalog's problems, and the server card URLs its entries link to, as written. */
 export interface CatalogCheck {
   readonly problems: readonly FileProblem[]
+  /** Fields ARD v0.91 requires that the AI Catalog spec leaves optional: entry displayNames. */
+  readonly ard: readonly FileProblem[]
   readonly cards: readonly string[]
+  /** The remote URLs of the server cards the catalog carries inline. */
+  readonly remotes: readonly string[]
 }
 
 export const SERVER_CARD_TYPE = 'application/mcp-server-card+json'
+/** The AI catalog's own media type (AI Catalog v0.9 RC, Media Type). */
+export const CATALOG_TYPE = 'application/ai-catalog+json'
 const MAX_PROBLEMS = 20
 const SPEC_VERSION = /^\d+\.\d+$/
 const SCHEMA =
@@ -31,18 +42,31 @@ const SKILL_FIELDS = ['id', 'name', 'description']
 
 export function checkCatalog(text: string): CatalogCheck {
   const root = parseObject(text)
-  if (root === null) return { problems: [notJson()], cards: [] }
+  if (root === null) return { problems: [notJson()], ard: [], cards: [], remotes: [] }
   const checks = new Checks()
+  const ard = new Checks()
   const version = checks.text(root, null, 'specVersion')
   if (version !== null && !SPEC_VERSION.test(version)) checks.invalid('specVersion')
+  const host = root['host']
+  if (host !== undefined) {
+    if (isObject(host)) checks.text(host, 'host', 'displayName')
+    else checks.invalid('host')
+  }
   const entries = root['entries']
   if (!Array.isArray(entries)) checks.missing('entries')
   const cards: string[] = []
+  const remotes: string[] = []
   ;(Array.isArray(entries) ? entries : []).forEach((entry: unknown, i) => {
-    const card = catalogEntry(entry, `entries[${i}]`, checks)
+    const at = `entries[${i}]`
+    const card = catalogEntry(entry, at, checks)
+    if (isObject(entry)) {
+      ard.text(entry, at, 'displayName')
+      const data = entry['data']
+      if (entry['type'] === SERVER_CARD_TYPE && isObject(data)) remotes.push(...remoteUrls(data))
+    }
     if (card !== null) cards.push(card)
   })
-  return { problems: checks.found, cards: [...new Set(cards)] }
+  return { problems: checks.found, ard: ard.found, cards: [...new Set(cards)], remotes }
 }
 
 /** Checks one entry; returns the card URL it links to, if it does. */
@@ -61,6 +85,21 @@ function catalogEntry(entry: unknown, at: string, checks: Checks): string | null
     else checks.invalid(`${at}.data`)
   }
   return card && data === undefined ? url : null
+}
+
+/** The remote URLs a server card names, as written, leaving out templated ones. */
+export function serverCardRemotes(text: string): string[] {
+  const root = parseObject(text)
+  return root === null ? [] : remoteUrls(root)
+}
+
+function remoteUrls(card: Json): string[] {
+  const remotes = card['remotes']
+  if (!Array.isArray(remotes)) return []
+  return remotes.flatMap((remote: unknown) => {
+    const url = isObject(remote) ? stringOf(remote['url']) : null
+    return url === null || url.includes('{') ? [] : [url]
+  })
 }
 
 export function checkServerCard(text: string): FileProblem[] {
@@ -111,7 +150,7 @@ function serverCard(card: Json, at: string | null, checks: Checks): void {
 }
 
 /** The problems found so far, capped so a broken file stays one finding. */
-class Checks {
+export class Checks {
   readonly found: FileProblem[] = []
 
   missing(field: string): void {
@@ -166,7 +205,7 @@ class Checks {
     })
   }
 
-  private add(problem: FileProblem): void {
+  add(problem: FileProblem): void {
     if (this.found.length < MAX_PROBLEMS) this.found.push(problem)
   }
 }
@@ -198,20 +237,23 @@ export const REQUIRED_FIELDS = {
     'defaultOutputModes',
     'skills',
   ],
+  api_catalog: ['linkset'],
+  agent_skills_index: ['$schema', 'skills'],
+  oauth_protected_resource: ['resource', 'authorization_servers'],
 } as const
 
-function isObject(value: unknown): value is Json {
+export function isObject(value: unknown): value is Json {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
 }
 
-function stringOf(value: unknown): string | null {
+export function stringOf(value: unknown): string | null {
   return typeof value === 'string' ? value : null
 }
 
-function path(at: string | null, field: string): string {
+export function path(at: string | null, field: string): string {
   return at === null ? field : `${at}.${field}`
 }
 
-function notJson(): FileProblem {
+export function notJson(): FileProblem {
   return { code: 'not_json', field: null }
 }

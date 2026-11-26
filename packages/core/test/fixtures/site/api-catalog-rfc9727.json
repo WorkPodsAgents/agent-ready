@@ -1,0 +1,12 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://www.example.com/.well-known/api-catalog",
+      "item": [
+        { "href": "https://developer.example.com/apis/foo_api" },
+        { "href": "https://developer.example.com/apis/bar_api" },
+        { "href": "https://developer.example.com/apis/cantona_api" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "scan-site",
+      "type": "skill-md",
+      "description": "Scan a website for AI agent readiness. Use when you need to check whether a site supports agent protocols (MCP, llms.txt, robots.txt, etc.) and get fix instructions for failing scored checks.",
+      "url": "/.well-known/agent-skills/scan-site/SKILL.md",
+      "digest": "sha256:d26f83f49615a7faff536ae60e2439fd486e7d511a8d64bcedb5f46646dc6f80"
+    },
+    {
+      "name": "robots-txt",
+      "type": "skill-md",
+      "description": "Implement a valid robots.txt with crawl rules per RFC 9309.",
+      "url": "/.well-known/agent-skills/robots-txt/SKILL.md",
+      "digest": "sha256:7e5e73a545bc778506458904303b07ac7eebd570e48ce9815ee5189efd859bb7"
+    },
+    {
+      "name": "ai-rules",
+      "type": "skill-md",
+      "description": "Add AI bot User-agent rules to robots.txt for search and training crawlers like OAI-SearchBot, Claude-SearchBot, GPTBot and ClaudeBot.",
+      "url": "/.well-known/agent-skills/ai-rules/SKILL.md",
+      "digest": "sha256:1616529afa5d5650e9354f75524bf351cfd386d1171a24cd2808016e050a0ef8"
+    }
+  ]
+}

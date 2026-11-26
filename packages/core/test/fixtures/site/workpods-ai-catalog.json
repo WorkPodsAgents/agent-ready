@@ -1,0 +1,10 @@
+{
+  "specVersion": "1.0",
+  "entries": [
+    {
+      "identifier": "ai.workpods/agent-ready-mcp",
+      "type": "application/mcp-server-card+json",
+      "url": "https://mcp.workpods.ai/mcp/server-card"
+    }
+  ]
+}

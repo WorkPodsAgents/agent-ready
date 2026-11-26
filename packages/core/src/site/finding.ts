@@ -22,7 +22,7 @@ export function finding(
   }
 }
 
-/** "1 page" or "3 pages". */
-export function count(n: number, noun: string): string {
-  return `${n} ${noun}${n === 1 ? '' : 's'}`
+/** "1 page" or "3 pages"; `plural` for a noun that does not just take an s. */
+export function count(n: number, noun: string, plural = `${noun}s`): string {
+  return `${n} ${n === 1 ? noun : plural}`
 }

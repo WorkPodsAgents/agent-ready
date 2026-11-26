@@ -1,15 +1,23 @@
 // Tells a file a site serves from an answer that only stands in for a missing one, ported from
 // WorkPods SoftAbsence.kt, so an absent optional file is never judged broken. Runs on a 2xx answer
 // after refusals were set aside, in this order: an HTML page, an empty body, a redirect to the
-// site's root or home page, a non-JSON answer on a .json path, a short llms.txt that is plainly a
-// not-found message, an ai-plugin.json without the two fields every one carries, and a JSON
-// not-found answer with none of a manifest's required fields.
+// site's root or home page, a non-JSON answer on a .json path or at a well-known path that only
+// ever holds JSON, a short llms.txt that is plainly a not-found message, an ai-plugin.json without
+// the two fields every one carries, and a JSON not-found answer with none of a manifest's
+// required fields.
 import type { FetchResponse } from '../io'
 import { parseObject, REQUIRED_FIELDS } from './agent-manifests'
 import { mediaType } from './fetch-file'
 
 export type AgentFileKind =
-  'llms_txt' | 'ai_catalog' | 'mcp_server_card' | 'a2a_agent_card' | 'ai_plugin'
+  | 'llms_txt'
+  | 'ai_catalog'
+  | 'mcp_server_card'
+  | 'a2a_agent_card'
+  | 'ai_plugin'
+  | 'api_catalog'
+  | 'agent_skills_index'
+  | 'oauth_protected_resource'
 
 export type AbsenceReason =
   | 'html_answer'
@@ -24,6 +32,8 @@ const HTML_TYPES = new Set(['text/html', 'application/xhtml+xml'])
 const NOT_FOUND_MARKER = /\b404\b|not found/i
 const NOT_FOUND_WORDS =
   /\b(404|not found|page not found|file not found|does not exist|no such file)\b/i
+/** Well-known files whose path has no .json but whose standard allows only JSON. */
+const JSON_ONLY: ReadonlySet<AgentFileKind> = new Set(['api_catalog', 'oauth_protected_resource'])
 const SHORT = 200
 const HEAD = 64
 
@@ -42,7 +52,8 @@ export function absenceReason(
   if (html(type, text)) return 'html_answer'
   if (text === '') return 'empty_answer'
   if (redirectedHome(path, pathOf(landed), pathOf(home))) return 'redirected_elsewhere'
-  if (path.endsWith('.json') && !json(type) && !parseable(text)) return 'not_json_answer'
+  const jsonOnly = path.endsWith('.json') || JSON_ONLY.has(kind)
+  if (jsonOnly && !json(type) && !parseable(text)) return 'not_json_answer'
   if (kind === 'llms_txt' && notFoundMessage(text)) return 'not_found_message'
   if (kind === 'ai_plugin' && !aiPlugin(text)) return 'not_ai_plugin'
   if (jsonNotFound(kind, text)) return 'not_found_json'
@@ -92,9 +103,7 @@ function aiPlugin(text: string): boolean {
  * however broken.
  */
 function jsonNotFound(kind: AgentFileKind, text: string): boolean {
-  if (kind !== 'ai_catalog' && kind !== 'mcp_server_card' && kind !== 'a2a_agent_card') {
-    return false
-  }
+  if (kind === 'llms_txt' || kind === 'ai_plugin') return false
   const root = parseObject(text)
   if (root === null) return false
   if (REQUIRED_FIELDS[kind].some((field) => field in root)) return false
