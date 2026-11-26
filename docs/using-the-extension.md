@@ -80,8 +80,14 @@ scripts) or CSV (for a spreadsheet).
   (training, search index or fetching for a user), plus any Content-Signal lines. Open the line
   under the list to see every crawler.
 - **Sitemaps:** whether they can be read and how many URLs they list.
-- **llms.txt and agent manifests:** whether you publish them. These are optional, so a missing
-  file is untested rather than a failure.
+- **llms.txt and agent manifests:** whether you publish them (the AI catalog, MCP server card,
+  A2A agent card, API catalog and agent skills index), and whether each meets its standard. When
+  your MCP server card names an endpoint on your own site, its sign-in metadata (OAuth Protected
+  Resource Metadata) is checked too. These are optional, so a missing file is untested rather
+  than a failure.
+- **Emerging standards:** Search for Agents, auth.md and Poppy, shown as found or not. They are
+  early drafts, so they never fail a check or change a score. DNS-AID is not checked, because
+  reading it would send your domain to a third-party DNS resolver.
 
 <br clear="right">
 
