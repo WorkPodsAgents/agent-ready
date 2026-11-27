@@ -66,15 +66,19 @@ describe('the site files probe', () => {
         headers: JSON_TYPE,
         body: JSON.stringify({ error: 'Not Found' }),
       },
+      [`${O}/.well-known/api-catalog`]: { headers: { 'content-type': 'text/plain' }, body: 'Nope' },
     })
     const report = await probeSiteFiles(O, site)
     const kinds = report.facts.agentFiles.map((f) => [f.kind, f.outcome, f.absence])
     expect(kinds).toEqual([
       ['llms_txt', 'not_found', 'html_answer'],
       ['ai_catalog', 'not_found', 'html_answer'],
+      ['mcp_server_card', 'not_found', null],
       ['a2a_agent_card', 'not_found', 'not_found_json'],
       ['a2a_agent_card', 'not_found', null],
       ['ai_plugin', 'not_found', null],
+      ['api_catalog', 'not_found', 'not_json_answer'],
+      ['agent_skills_index', 'not_found', null],
     ])
     expect(report.findings.map((f) => f.status)).toEqual(['not_applicable', 'not_applicable'])
     expect(report.robots.allows('GPTBot', '/')).toBe(true)
@@ -113,5 +117,125 @@ describe('the site files probe', () => {
     expect(old.findings[1]?.summary).toBe(
       'The only agent manifest on the site is the retired ai-plugin.json.',
     )
+  })
+})
+
+describe('the agent discovery files', () => {
+  const SERVER_CARD = {
+    $schema: 'https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json',
+    name: 'com.example/store',
+    version: '1.0.0',
+    description: 'Order running shoes from Acme Running.',
+    remotes: [{ type: 'streamable-http', url: `${O}/mcp` }],
+  }
+  const LINKSET = { 'content-type': 'application/linkset+json' }
+  const SKILLS = 'https://schemas.agentskills.io/discovery/0.2.0/schema.json'
+  const PRM = `${O}/.well-known/oauth-protected-resource`
+
+  it('passes the well-known MCP card, API catalog, skills index and sign-in metadata', async () => {
+    const site = fakeSite({
+      [`${O}/.well-known/ai-catalog.json`]: {
+        headers: { 'content-type': 'application/ai-catalog+json' },
+        body: JSON.stringify({
+          specVersion: '0.9',
+          entries: [{ identifier: 'urn:air:example.com:store', type: 'x/y', url: '/a' }],
+        }),
+      },
+      [`${O}/.well-known/mcp/server-card.json`]: {
+        headers: JSON_TYPE,
+        body: JSON.stringify(SERVER_CARD),
+      },
+      [`${O}/.well-known/api-catalog`]: {
+        headers: LINKSET,
+        body: JSON.stringify({ linkset: [{ item: [{ href: `${O}/api` }] }] }),
+      },
+      [`${O}/.well-known/agent-skills/index.json`]: {
+        headers: JSON_TYPE,
+        body: JSON.stringify({ $schema: SKILLS, skills: [] }),
+      },
+      [`${PRM}/mcp`]: {
+        headers: JSON_TYPE,
+        body: JSON.stringify({ resource: `${O}/mcp`, authorization_servers: [`${O}/auth`] }),
+      },
+    })
+    const report = await probeSiteFiles(O, site)
+    const read = report.facts.agentFiles.filter((f) => f.outcome === 'ok')
+    expect(read.map((f) => [f.kind, f.problems])).toEqual([
+      ['ai_catalog', []],
+      ['mcp_server_card', []],
+      ['api_catalog', []],
+      ['agent_skills_index', []],
+      ['oauth_protected_resource', []],
+    ])
+    const manifest = report.findings[1]
+    expect(manifest).toMatchObject({ status: 'pass', severity: null })
+    expect(manifest?.summary).toBe(
+      '5 agent manifests meet their standard. 1 AI catalog entry lacks the displayName ARD ' +
+        'v0.91 requires; the AI Catalog spec leaves it optional.',
+    )
+    expect(site.requests.map((r) => r.url)).not.toContain(PRM)
+  })
+
+  it('reads sign-in metadata only for an MCP endpoint on the site, then at its root', async () => {
+    const elsewhere = fakeSite({
+      [`${O}/.well-known/mcp/server-card.json`]: {
+        headers: JSON_TYPE,
+        body: JSON.stringify({
+          ...SERVER_CARD,
+          remotes: [{ type: 'streamable-http', url: 'https://mcp.example.net/mcp' }],
+        }),
+      },
+    })
+    const away = await probeSiteFiles(O, elsewhere)
+    expect(away.facts.agentFiles.map((f) => f.kind)).not.toContain('oauth_protected_resource')
+    expect(away.findings[1]?.status).toBe('pass')
+
+    const broken = fakeSite({
+      [`${O}/.well-known/mcp/server-card.json`]: {
+        headers: JSON_TYPE,
+        body: JSON.stringify(SERVER_CARD),
+      },
+      [PRM]: {
+        headers: JSON_TYPE,
+        body: JSON.stringify({ resource: 'https://other.example/', authorization_servers: [] }),
+      },
+    })
+    const report = await probeSiteFiles(O, broken)
+    const metadata = report.facts.agentFiles.filter((f) => f.kind === 'oauth_protected_resource')
+    expect(metadata.map((f) => [f.url, f.outcome])).toEqual([
+      [`${PRM}/mcp`, 'not_found'],
+      [PRM, 'ok'],
+    ])
+    expect(report.findings[1]).toMatchObject({ status: 'fail', severity: 'medium' })
+    expect(report.findings[1]?.evidence).toEqual([
+      { url: PRM, note: 'invalid_field: resource; missing_field: authorization_servers' },
+    ])
+  })
+
+  it('shows emerging standards as found or not, never as a finding', async () => {
+    const site = fakeSite({
+      [`${O}/.well-known/search?q=about`]: {
+        headers: { 'content-type': 'text/markdown; charset=utf-8', 'accept-query': 'text/plain' },
+        body: '# Search results for: "about"\n',
+      },
+      [`${O}/auth.md`]: { headers: { 'content-type': 'text/markdown' }, body: '# Acme auth.md\n' },
+      [`${O}/.well-known/poppy.json`]: {
+        headers: JSON_TYPE,
+        body: JSON.stringify({
+          protocol_version: '1.0',
+          organization: { name: 'Acme', domain: 'other.example' },
+        }),
+      },
+    })
+    const report = await probeSiteFiles(O, site)
+    expect(report.facts.emerging.map((s) => [s.standard, s.status])).toEqual([
+      ['search_for_agents', 'found'],
+      ['auth_md', 'found'],
+      ['poppy', 'absent'],
+    ])
+    expect(report.findings.map((f) => [f.checkId, f.status])).toEqual([
+      ['llms_txt_invalid', 'not_applicable'],
+      ['agent_manifest_invalid', 'not_applicable'],
+    ])
   })
 })

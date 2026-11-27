@@ -1,11 +1,13 @@
-// The site files probe: robots.txt, sitemaps, the files agents read and the home page's Markdown
-// version, read one request at a time, with the facts the UI shows and the site-level findings.
+// The site files probe: robots.txt, sitemaps, the files agents read, the home page's Markdown
+// version and the emerging agent standards, read one request at a time, with the facts the UI
+// shows and the site-level findings.
 import type { Fetcher } from '../io'
 import type { AiCrawler, Finding } from '../model'
 import { readAgentFiles, type AgentFile } from './agent-files'
 import { agentManifestFinding, llmsTxtFinding } from './agent-file-findings'
 import type { ContentSignal } from './content-signal'
 import { AI_CRAWLERS } from './crawlers'
+import { readEmergingSignals, type EmergingSignal } from './emerging'
 import { fetchFile } from './fetch-file'
 import { readMarkdownVersion, type MarkdownVersion } from './markdown-version'
 import { robotsFromAnswer, type RobotsFile } from './robots'
@@ -26,6 +28,8 @@ export interface SiteFacts {
   readonly aiCrawlers: readonly CrawlerAccess[]
   readonly agentFiles: readonly AgentFile[]
   readonly markdown: MarkdownVersion
+  /** Emerging agent standards, found or not; shown for information, never judged or scored. */
+  readonly emerging: readonly EmergingSignal[]
 }
 
 export interface SiteFilesReport {
@@ -48,6 +52,7 @@ export async function probeSiteFiles(origin: string, fetcher: Fetcher): Promise<
   const sitemap = await readSitemaps(fetcher, roots)
   const { version, home } = await readMarkdownVersion(fetcher, base)
   const agentFiles = await readAgentFiles(fetcher, base, home.url)
+  const emerging = await readEmergingSignals(fetcher, base)
   const homeUrl = `${base}/`
   return {
     origin: base,
@@ -60,6 +65,7 @@ export async function probeSiteFiles(origin: string, fetcher: Fetcher): Promise<
       aiCrawlers: AI_CRAWLERS.map((c) => ({ ...c, allowed: robots.allows(c.token, homeUrl) })),
       agentFiles,
       markdown: version,
+      emerging,
     },
     findings: [llmsTxtFinding(agentFiles), agentManifestFinding(agentFiles)],
   }

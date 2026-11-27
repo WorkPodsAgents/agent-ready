@@ -3,9 +3,11 @@
 /**
  * missing_h1: an llms.txt opens with no H1. not_json: a manifest is no JSON object.
  * missing_field: a required field is absent or empty. invalid_field: a field holds a value its
- * standard does not allow.
+ * standard does not allow. invalid_media_type: the file is served as a media type its standard
+ * does not allow.
  */
-export type FileProblemCode = 'missing_h1' | 'not_json' | 'missing_field' | 'invalid_field'
+export type FileProblemCode =
+  'missing_h1' | 'not_json' | 'missing_field' | 'invalid_field' | 'invalid_media_type'
 
 export interface FileProblem {
   readonly code: FileProblemCode

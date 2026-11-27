@@ -46,12 +46,16 @@ export const TOOL_DESCRIPTIONS: Readonly<Record<ToolName, string>> = {
     'site-wide roll-up per cross-page check saying how many pages it fired on; and notes on ' +
     `what was left out. ${FINDINGS}`,
   site_files:
-    "Checks the site's robots.txt, sitemaps, llms.txt and agent manifests, and gives a " +
-    'robots.txt verdict for each AI crawler with its role (training, search_index or ' +
-    'user_fetch). A missing optional file such as llms.txt is not_applicable, never a failure. ' +
-    'Returns origin; facts (robots.txt status, Content-Signal lines, aiCrawlers each with ' +
-    'allowed true or false for the home page, the agent files found, and the Markdown version); ' +
-    `sitemap (the files read and the URLs listed); and findings. ${FINDINGS}`,
+    "Checks the site's robots.txt, sitemaps, llms.txt and agent manifests (AI catalog, MCP " +
+    'server card, A2A agent card, API catalog, agent skills index, and the OAuth Protected ' +
+    "Resource Metadata of an MCP endpoint on the site's own host), and gives a robots.txt " +
+    'verdict for each AI crawler with its role (training, search_index or user_fetch). A ' +
+    'missing optional file such as llms.txt is not_applicable, never a failure. Returns origin; ' +
+    'facts (robots.txt status, Content-Signal lines, aiCrawlers each with allowed true or false ' +
+    'for the home page, agentFiles each with kind, outcome and problems, plus ard: the catalog ' +
+    'entry fields ARD v0.91 wants, never counted; the Markdown version; and emerging: Search for ' +
+    'Agents, auth.md and Poppy, each found, absent or unread, shown for information and never ' +
+    `judged); sitemap (the files read and the URLs listed); and findings. ${FINDINGS}`,
   see_as_agent:
     'Shows a page the way an AI agent reads it: the raw HTML a crawler without JavaScript gets, ' +
     'the rendered page text, the accessibility tree (roles and accessible names of controls) ' +

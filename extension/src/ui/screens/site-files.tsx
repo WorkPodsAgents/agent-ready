@@ -1,4 +1,4 @@
-import type { AgentFile } from '@open-agent-ready/core/site'
+import type { AgentFile, EmergingSignal } from '@open-agent-ready/core/site'
 import type { SiteFiles } from '../../shared/results'
 import { call, grantSites } from '../client'
 import { Badge, Dot } from '../components/badge'
@@ -16,6 +16,21 @@ const FILE_LABEL: Readonly<Record<AgentFile['kind'], string>> = {
   mcp_server_card: 'MCP server card',
   a2a_agent_card: 'A2A agent card',
   ai_plugin: 'ai-plugin.json',
+  api_catalog: 'API catalog',
+  agent_skills_index: 'Agent skills index',
+  oauth_protected_resource: 'MCP sign-in metadata',
+}
+
+const EMERGING_LABEL: Readonly<Record<EmergingSignal['standard'], string>> = {
+  search_for_agents: 'Search for Agents',
+  auth_md: 'auth.md',
+  poppy: 'Poppy (poppy.json)',
+}
+
+const EMERGING_TONE: Readonly<Record<EmergingSignal['status'], { tone: Tone; text: string }>> = {
+  found: { tone: 'good', text: 'Found' },
+  absent: { tone: 'neutral', text: 'Not published' },
+  unread: { tone: 'warn', text: 'No answer' },
 }
 
 /** A kind read at two addresses (the A2A card and its legacy name) says which file it is. */
@@ -100,6 +115,25 @@ function FilesBody({ files }: { readonly files: SiteFiles }) {
           )
         })}
       </ul>
+      <details className={styles.fold}>
+        <summary>Emerging standards: shown for information, not scored</summary>
+        <p className={styles.footnote}>
+          Early drafts that few agents read yet. Skipping one never fails a check or lowers a score.
+          DNS-AID is not checked, as reading it would send the domain to a third-party DNS resolver.
+        </p>
+        <ul className={styles.list}>
+          {facts.emerging.map((signal) => {
+            const { tone, text } = EMERGING_TONE[signal.status]
+            return (
+              <li key={signal.standard} className={styles.item}>
+                <Dot tone={tone} />
+                {EMERGING_LABEL[signal.standard]}
+                <Badge tone={tone}>{text}</Badge>
+              </li>
+            )
+          })}
+        </ul>
+      </details>
       <details className={styles.fold}>
         <summary>
           {blocked.length === 0
