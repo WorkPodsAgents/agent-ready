@@ -176,7 +176,7 @@ describe('the agent discovery files', () => {
     expect(site.requests.map((r) => r.url)).not.toContain(PRM)
   })
 
-  it('reads sign-in metadata only for an MCP endpoint on the site, at its root as a fallback', async () => {
+  it('reads sign-in metadata only for an MCP endpoint on the site, then at its root', async () => {
     const elsewhere = fakeSite({
       [`${O}/.well-known/mcp/server-card.json`]: {
         headers: JSON_TYPE,

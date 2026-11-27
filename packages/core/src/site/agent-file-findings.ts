@@ -54,11 +54,12 @@ export function agentManifestFinding(files: readonly AgentFile[]): Finding {
   }
   const present = current.filter(isPresent)
   const gaps = present.reduce((sum, f) => sum + (f.ard?.length ?? 0), 0)
+  const lack = gaps === 1 ? 'lacks' : 'lack'
   const ard =
     gaps === 0
       ? ''
-      : ` ${count(gaps, 'AI catalog entry', 'AI catalog entries')} ${gaps === 1 ? 'lacks' : 'lack'}` +
-        ' the displayName ARD v0.91 requires; the AI Catalog spec leaves it optional.'
+      : ` ${count(gaps, 'AI catalog entry', 'AI catalog entries')} ${lack} the displayName ARD ` +
+        'v0.91 requires; the AI Catalog spec leaves it optional.'
   const summary = `${count(present.length, 'agent manifest')} meet their standard.${ard}`
   return verdict('pass', summary, present)
 }
